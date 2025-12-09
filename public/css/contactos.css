@@ -1,0 +1,105 @@
+body {
+    background-color: #001f3d;
+}
+header {
+    background-color: #00264d;
+}
+footer {
+    background-color: #00264d;
+}
+.text-white {
+    color: #ffffff !important;
+}
+.btn-primary {
+    background-color: #004d80;
+    border-color: #004d80;
+}
+.btn-primary:hover {
+    background-color: #003b66;
+    border-color: #003b66;
+}
+.hero-content {
+    background-color: #003366;
+}
+.section-title {
+    color: #fff;
+}
+.contact-section {
+    background-color: #003366;
+    color: #fff;
+}
+.form-control:focus {
+    border-color: #004d80;
+    box-shadow: 0 0 0 0.25rem rgba(0, 77, 128, 0.25);
+}
+.img-fluid {
+    max-width: 100%; 
+    height: auto; 
+}
+
+.logo img {
+    max-height: 100px; 
+    max-width: 200px; 
+    object-fit: contain; 
+}
+
+.required {
+    color: red;
+    margin-left: 5px;
+    font-size: 1rem;
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+    background-color: #00264d;
+    padding: 10px;
+}
+.navbar-toggler {
+    background-color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.navbar-toggler-icon {
+    width: 30px;
+    height: 3px;
+    background-color: #00264d;
+    display: block;
+    margin: 5px auto;
+    border-radius: 2px;
+    position: relative;
+}
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+    content: '';
+    width: 30px;
+    height: 3px;
+    background-color: #00264d;
+    display: block;
+    position: absolute;
+    left: 0;
+    transition: transform 0.3s ease-in-out;
+}
+.navbar-toggler-icon::before {
+    top: -8px;
+}
+.navbar-toggler-icon::after {
+    top: 8px;
+}
+
+/* Estilos para el menú hamburguesa */
+.navbar-nav {
+    width: 100%;
+    text-align: center;
+}
+.navbar-nav .nav-item {
+    padding: 10px;
+}
+.navbar-nav .nav-link {
+    color: #ffffff;
+    font-size: 1rem;
+}
+.navbar-nav .nav-link:hover {
+    color: #004d80;
+}
