@@ -6,6 +6,7 @@ use App\Models\Contacto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use App\Mail\NuevoContactoMail;
 
 class ContactoController extends Controller
 {
@@ -27,16 +28,7 @@ class ContactoController extends Controller
 
         // Enviar notificación por email al administrador
         try {
-            Mail::send('emails.nuevo_contacto', [
-                'nombreCliente' => $contacto->name,
-                'emailCliente' => $contacto->email,
-                'asunto' => $contacto->subject,
-                'mensaje' => $contacto->message,
-            ], function($message) use ($contacto) {
-                $message->to('jarayarleni8@gmail.com', 'ESPOMALIA Admin')
-                        ->subject('📩 Nuevo mensaje de contacto: ' . $contacto->subject)
-                        ->replyTo($contacto->email, $contacto->name);
-            });
+            Mail::to('jarayarleni8@gmail.com')->send(new NuevoContactoMail($contacto));
         } catch (\Exception $e) {
             // Log el error pero no interrumpir el flujo
             Log::error('Error al enviar notificación de contacto: ' . $e->getMessage());

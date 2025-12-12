@@ -75,14 +75,14 @@
             <p>Has recibido un nuevo mensaje desde el formulario de contacto de tu sitio web.</p>
             
             <div class="info-box">
-                <p><span class="label">Nombre:</span> {{ $nombreCliente }}</p>
-                <p><span class="label">Email:</span> <a href="mailto:{{ $emailCliente }}">{{ $emailCliente }}</a></p>
-                <p><span class="label">Asunto:</span> {{ $asunto }}</p>
+                <p><span class="label">Nombre:</span> {{ $contacto->name }}</p>
+                <p><span class="label">Email:</span> <a href="mailto:{{ $contacto->email }}">{{ $contacto->email }}</a></p>
+                <p><span class="label">Asunto:</span> {{ $contacto->subject }}</p>
             </div>
             
             <h3>Mensaje:</h3>
             <div class="message-box">
-                {{ $mensaje }}
+                {{ $contacto->message }}
             </div>
             
             <p style="text-align: center;">
