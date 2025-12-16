@@ -162,7 +162,11 @@
                                         <input type="text" name="precio" class="form-control" value="{{ $servicio->precio }}">
                                     </div>
                                     <div class="mb-3">
-                                        <label>Imagen</label>
+                                        <label>URL de Imagen (recomendado)</label>
+                                        <input type="url" name="imagen_url" class="form-control" value="{{ str_starts_with($servicio->imagen ?? '', 'http') ? $servicio->imagen : '' }}" placeholder="https://picsum.photos/400/300">
+                                        <small class="text-muted">O sube un archivo (solo funciona en local):</small>
+                                    </div>
+                                    <div class="mb-3">
                                         <input type="file" name="imagen" class="form-control">
                                     </div>
                                 </div>
@@ -205,7 +209,11 @@
                             <input type="text" name="precio" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label>Imagen</label>
+                            <label>URL de Imagen (recomendado para Koyeb)</label>
+                            <input type="url" name="imagen_url" class="form-control" placeholder="https://picsum.photos/400/300">
+                            <small class="text-muted">O sube un archivo (solo funciona en local):</small>
+                        </div>
+                        <div class="mb-3">
                             <input type="file" name="imagen" class="form-control">
                         </div>
                     </div>

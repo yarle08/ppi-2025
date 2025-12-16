@@ -13,11 +13,17 @@ class HitoController extends Controller
         $data = $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
-            'imagen' => 'nullable|image|max:2048'
+            'imagen' => 'nullable|image|max:2048',
+            'imagen_url' => 'nullable|url'
         ]);
-        if ($request->hasFile('imagen')) {
+        
+        // Priorizar URL sobre archivo subido
+        if ($request->filled('imagen_url')) {
+            $data['imagen'] = $request->imagen_url;
+        } elseif ($request->hasFile('imagen')) {
             $data['imagen'] = $request->file('imagen')->store('hitos', 'public');
         }
+        
         $hito = Hito::create($data);
         return redirect()->back()->with('success', 'Hito creado correctamente.');
     }
@@ -28,14 +34,24 @@ class HitoController extends Controller
         $data = $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
-            'imagen' => 'nullable|image|max:2048'
+            'imagen' => 'nullable|image|max:2048',
+            'imagen_url' => 'nullable|url'
         ]);
-        if ($request->hasFile('imagen')) {
-            if ($hito->imagen) {
+        
+        // Priorizar URL sobre archivo subido
+        if ($request->filled('imagen_url')) {
+            // Si la imagen anterior era un archivo local, eliminarlo
+            if ($hito->imagen && !str_starts_with($hito->imagen, 'http')) {
+                Storage::disk('public')->delete($hito->imagen);
+            }
+            $data['imagen'] = $request->imagen_url;
+        } elseif ($request->hasFile('imagen')) {
+            if ($hito->imagen && !str_starts_with($hito->imagen, 'http')) {
                 Storage::disk('public')->delete($hito->imagen);
             }
             $data['imagen'] = $request->file('imagen')->store('hitos', 'public');
         }
+        
         $hito->update($data);
         return redirect()->back()->with('success', 'Hito actualizado correctamente.');
     }
