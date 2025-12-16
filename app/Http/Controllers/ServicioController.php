@@ -42,15 +42,15 @@ class ServicioController extends Controller
             'descripcion' => 'required',
             'duracion' => 'nullable',
             'precio' => 'nullable',
-            'imagen' => 'nullable|image|max:2048',
-            'imagen_url' => 'nullable|url'
+            'imagen' => 'nullable|image|max:2048'
         ]);
         
-        // Priorizar URL sobre archivo subido
-        if ($request->filled('imagen_url')) {
-            $data['imagen'] = $request->imagen_url;
-        } elseif ($request->hasFile('imagen')) {
+        if ($request->hasFile('imagen')) {
             $data['imagen'] = $request->file('imagen')->store('servicios', 'public');
+        } else {
+            // Generar URL de placeholder automática
+            $seed = 'servicio' . time() . rand(1000, 9999);
+            $data['imagen'] = "https://picsum.photos/seed/{$seed}/400/300";
         }
         
         Servicio::create($data);

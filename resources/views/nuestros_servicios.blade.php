@@ -162,12 +162,9 @@
                                         <input type="text" name="precio" class="form-control" value="{{ $servicio->precio }}">
                                     </div>
                                     <div class="mb-3">
-                                        <label>URL de Imagen (recomendado)</label>
-                                        <input type="url" name="imagen_url" class="form-control" value="{{ str_starts_with($servicio->imagen ?? '', 'http') ? $servicio->imagen : '' }}" placeholder="https://picsum.photos/400/300">
-                                        <small class="text-muted">O sube un archivo (solo funciona en local):</small>
-                                    </div>
-                                    <div class="mb-3">
+                                        <label>Imagen (opcional)</label>
                                         <input type="file" name="imagen" class="form-control">
+                                        <small class="text-muted">Si no subes imagen, se mantendrá la actual</small>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -209,12 +206,9 @@
                             <input type="text" name="precio" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label>URL de Imagen (recomendado para Koyeb)</label>
-                            <input type="url" name="imagen_url" class="form-control" placeholder="https://picsum.photos/400/300">
-                            <small class="text-muted">O sube un archivo (solo funciona en local):</small>
-                        </div>
-                        <div class="mb-3">
+                            <label>Imagen (opcional)</label>
                             <input type="file" name="imagen" class="form-control">
+                            <small class="text-muted">Si no subes imagen, se usará una imagen automática</small>
                         </div>
                     </div>
                     <div class="modal-footer">
