@@ -192,12 +192,9 @@
                                         <textarea class="form-control" name="descripcion" required>{{ $hito->descripcion }}</textarea>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">URL de Imagen (recomendado)</label>
-                                        <input type="url" class="form-control" name="imagen_url" value="{{ str_starts_with($hito->imagen ?? '', 'http') ? $hito->imagen : '' }}" placeholder="https://picsum.photos/400/300">
-                                        <small class="text-muted">O sube un archivo (solo funciona en local):</small>
-                                    </div>
-                                    <div class="mb-3">
+                                        <label class="form-label">Imagen (opcional)</label>
                                         <input type="file" class="form-control" name="imagen" accept="image/*">
+                                        <small class="text-muted">Si no subes imagen, se mantendrá la actual</small>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -232,12 +229,9 @@
                             <textarea class="form-control" name="descripcion" required></textarea>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">URL de Imagen (recomendado para producción)</label>
-                            <input type="url" class="form-control" name="imagen_url" placeholder="https://picsum.photos/400/300">
-                            <small class="text-muted">O sube un archivo (solo funciona en local):</small>
-                        </div>
-                        <div class="mb-3">
+                            <label class="form-label">Imagen (opcional)</label>
                             <input type="file" class="form-control" name="imagen" accept="image/*">
+                            <small class="text-muted">Si no subes imagen, se usará una imagen automática</small>
                         </div>
                     </div>
                     <div class="modal-footer">
