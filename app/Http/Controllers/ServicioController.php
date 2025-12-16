@@ -42,11 +42,17 @@ class ServicioController extends Controller
             'descripcion' => 'required',
             'duracion' => 'nullable',
             'precio' => 'nullable',
-            'imagen' => 'nullable|image|max:2048'
+            'imagen' => 'nullable|image|max:2048',
+            'imagen_url' => 'nullable|url'
         ]);
-        if ($request->hasFile('imagen')) {
+        
+        // Priorizar URL sobre archivo subido
+        if ($request->filled('imagen_url')) {
+            $data['imagen'] = $request->imagen_url;
+        } elseif ($request->hasFile('imagen')) {
             $data['imagen'] = $request->file('imagen')->store('servicios', 'public');
         }
+        
         Servicio::create($data);
         return back()->with('success', 'Servicio creado correctamente');
     }
@@ -87,12 +93,24 @@ class ServicioController extends Controller
             'descripcion' => 'required',
             'duracion' => 'nullable',
             'precio' => 'nullable',
-            'imagen' => 'nullable|image|max:2048'
+            'imagen' => 'nullable|image|max:2048',
+            'imagen_url' => 'nullable|url'
         ]);
-        if ($request->hasFile('imagen')) {
-            if ($servicio->imagen) Storage::disk('public')->delete($servicio->imagen);
+        
+        // Priorizar URL sobre archivo subido
+        if ($request->filled('imagen_url')) {
+            // Si la imagen anterior era un archivo local, eliminarlo
+            if ($servicio->imagen && !str_starts_with($servicio->imagen, 'http')) {
+                Storage::disk('public')->delete($servicio->imagen);
+            }
+            $data['imagen'] = $request->imagen_url;
+        } elseif ($request->hasFile('imagen')) {
+            if ($servicio->imagen && !str_starts_with($servicio->imagen, 'http')) {
+                Storage::disk('public')->delete($servicio->imagen);
+            }
             $data['imagen'] = $request->file('imagen')->store('servicios', 'public');
         }
+        
         $servicio->update($data);
         return back()->with('success', 'Servicio actualizado correctamente');
     }
