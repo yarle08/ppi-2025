@@ -11,15 +11,39 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
+        // Validar los datos de entrada
+        $request->validate([
+            'usuario' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
         $credentials = $request->only('usuario', 'password');
 
+        // Buscar el usuario
         $user = Usuario::where('usuario', $credentials['usuario'])->first();
 
-        if ($user && Hash::check($credentials['password'], $user->password)) {
-            Auth::login($user);
-            return redirect()->route('inicio');
+        // Verificar si el usuario existe
+        if (!$user) {
+            \Log::error('Intento de login fallido: Usuario no encontrado', [
+                'usuario' => $credentials['usuario']
+            ]);
+            return back()->withErrors(['usuario' => 'El usuario no existe'])
+                        ->withInput($request->only('usuario'));
         }
 
-        return back()->withErrors(['usuario' => 'Credenciales incorrectas']);
+        // Verificar la contraseña
+        if (!Hash::check($credentials['password'], $user->password)) {
+            \Log::error('Intento de login fallido: Contraseña incorrecta', [
+                'usuario' => $credentials['usuario']
+            ]);
+            return back()->withErrors(['password' => 'La contraseña es incorrecta'])
+                        ->withInput($request->only('usuario'));
+        }
+
+        // Login exitoso
+        Auth::login($user);
+        \Log::info('Login exitoso', ['usuario' => $user->usuario]);
+        
+        return redirect()->route('inicio');
     }
 }
