@@ -40,17 +40,17 @@ class DatosIniciales extends Seeder
             [
                 'titulo' => '2000 - Fundada la Empresa',
                 'descripcion' => 'Comenzamos nuestras operaciones con un pequeño equipo de profesionales dedicados.',
-                'imagen' => null
+                'imagen' => 'https://picsum.photos/seed/empresa2000/400/300'
             ],
             [
                 'titulo' => '2010 - Expansión',
                 'descripcion' => 'Expandimos nuestras instalaciones y duplicamos nuestra capacidad operativa.',
-                'imagen' => null
+                'imagen' => 'https://picsum.photos/seed/expansion2010/400/300'
             ],
             [
                 'titulo' => '2020 - Enfoque en Sostenibilidad',
                 'descripcion' => 'Adoptamos prácticas sostenibles en todas nuestras operaciones.',
-                'imagen' => null
+                'imagen' => 'https://picsum.photos/seed/sostenibilidad2020/400/300'
             ],
         ];
 
@@ -68,21 +68,21 @@ class DatosIniciales extends Seeder
                 'descripcion' => 'Gestión completa de importación y exportación con seguimiento en tiempo real.',
                 'duracion' => '24/7',
                 'precio' => 'Cotizar',
-                'imagen' => null
+                'imagen' => 'https://picsum.photos/seed/logistica/400/300'
             ],
             [
                 'titulo' => 'Almacenamiento Portuario',
                 'descripcion' => 'Instalaciones modernas y seguras para el almacenamiento de mercancías.',
                 'duracion' => 'Flexible',
                 'precio' => 'Desde $500/mes',
-                'imagen' => null
+                'imagen' => 'https://picsum.photos/seed/almacenamiento/400/300'
             ],
             [
                 'titulo' => 'Gestión Aduanera',
                 'descripcion' => 'Asesoría y trámites aduaneros completos para agilizar sus operaciones.',
                 'duracion' => '1-3 días',
                 'precio' => 'Desde $200',
-                'imagen' => null
+                'imagen' => 'https://picsum.photos/seed/aduanera/400/300'
             ],
         ];
 

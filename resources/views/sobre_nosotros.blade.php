@@ -148,7 +148,7 @@
                     <div class="col-md-4 mb-4" id="hito-{{ $hito->id }}">
                         <div class="milestone text-center border p-3">
                             @if ($hito->imagen)
-                                <img src="{{ asset('storage/' . $hito->imagen) }}" alt="{{ $hito->titulo }}"
+                                <img src="{{ str_starts_with($hito->imagen, 'http') ? $hito->imagen : asset('storage/' . $hito->imagen) }}" alt="{{ $hito->titulo }}"
                                     class="milestone-img mb-3">
                             @endif
                             <h5>{{ $hito->titulo }}</h5>

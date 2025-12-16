@@ -91,7 +91,7 @@
                 @foreach($servicios as $servicio)
                     <div class="col-md-4 mb-4">
                         <div class="card service-card">
-                            <img src="{{ $servicio->imagen ? asset('storage/' . $servicio->imagen) : asset('static/img/servicio1.jpg') }}" class="card-img-top" alt="{{ $servicio->titulo }}">
+                            <img src="{{ $servicio->imagen ? (str_starts_with($servicio->imagen, 'http') ? $servicio->imagen : asset('storage/' . $servicio->imagen)) : asset('static/img/servicio1.jpg') }}" class="card-img-top" alt="{{ $servicio->titulo }}">
                             <div class="card-body">
                                 <h5 class="card-title service-title">{{ $servicio->titulo }}</h5>
                                 <p class="card-text">{{ $servicio->descripcion }}</p>
