@@ -36,13 +36,13 @@ jobs:
         extensions: mbstring, pdo, pdo_pgsql, bcmath
         coverage: none
 
-    - name: 📦 Copiar .env
+    - name: � Instalar dependencias
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: 📦 Configurar .env y generar clave
       run: |
         cp .env.example .env
         php artisan key:generate
-
-    - name: 📚 Instalar dependencias
-      run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: 🗄️ Ejecutar migraciones
       env:
